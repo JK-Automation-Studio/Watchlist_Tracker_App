@@ -1,10 +1,12 @@
 package com.jkstudio.playlisttrackerapp;
 
+import android.app.Dialog;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AlertDialog;
@@ -33,9 +35,12 @@ public class MainActivity extends AppCompatActivity {
         });
 
 
+        // create new library and fill with temp Listings
+        // Replace with retrieving library from file
         library = new Library();
 
         Listing listing = new Listing();
+
         listing.setId(100);
         listing.setTitle("Guardians of the Multiverse");
         listing.setDescription("A movie about a group of people who accomplish a goal.");
@@ -75,6 +80,9 @@ public class MainActivity extends AppCompatActivity {
         listing4.setWatchMethod("Unknown");
         library.addListing(listing4);
 
+
+
+        // get recyclerView and
         RecyclerView recyclerView = findViewById(R.id.recyclerView);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
@@ -90,9 +98,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void EditListing(Listing listing) {
-        //TODO Scene for editing a Listing / Creating
-        // Edit Text boxes for all texts
-        // edit photo option somehow
+        //TODO edit photo option somehow
 
         // Inflate the dialog layout
         LayoutInflater inflater = LayoutInflater.from(this);
@@ -100,18 +106,24 @@ public class MainActivity extends AppCompatActivity {
 
         EditText editTitle = dialogView.findViewById(R.id.editTextTitle);
         EditText editWatchMethod = dialogView.findViewById(R.id.editTextWatchMethod);
+        ImageView imageView = dialogView.findViewById(R.id.imageView);
 
         Button btnAdd = dialogView.findViewById(R.id.buttonAdd);
         Button btnCancel = dialogView.findViewById(R.id.buttonCancel);
 
-        // If editing an existing listing, pre-fill fields
+        // Fill edit dialog fields with listing's current info, new Listings are blank
         editTitle.setText(listing.getTitle());
         editWatchMethod.setText(listing.getWatchMethod());
-        //editRating.setText(String.valueOf(listing.getRating()));
-        //editDescription.setText(listing.getDescription());
+        if(listing.getPhoto().isEmpty()) {
+            imageView.setImageResource(R.drawable.ic_launcher_background); // set image to green grid
+            btnAdd.setText("Add");
+        }
+        else{
+            imageView.setImageResource(R.drawable.ic_launcher_foreground); // set image to droid
+            //TODO photo storage handled properly, set the image here to the Listing's photo
 
-
-
+            btnAdd.setText("Confirm");
+        }
         // Build the dialog
         AlertDialog dialog = new AlertDialog.Builder(this)
                 //.setTitle("Edit Listing")
@@ -120,9 +132,9 @@ public class MainActivity extends AppCompatActivity {
 
 
         btnAdd.setOnClickListener(v -> {
+            // Title and method attributes from dialog
             String title = editTitle.getText().toString().trim();
             String method = editWatchMethod.getText().toString().trim();
-            //String ratingStr = editRating.getText().toString().trim();
 
             if (!title.isEmpty()) {
                 listing.setTitle(title);

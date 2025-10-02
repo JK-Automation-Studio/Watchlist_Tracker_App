@@ -17,12 +17,12 @@ import java.util.ArrayList;
 // Adapter connects your data (List<Listing>) with the RecyclerView
 public class ListingViewAdapter extends RecyclerView.Adapter<ListingViewAdapter.ListingViewHolder> {
 
-    private final Context context;            // activity/fragment context
+    private final MainActivity mainActivity;            // activity/fragment context
     private final ArrayList<Listing> listings;     // the data source
 
     // Constructor: pass in context + data
-    public ListingViewAdapter(Context context, ArrayList<Listing> listings) {
-        this.context = context;
+    public ListingViewAdapter(MainActivity mainActivity, ArrayList<Listing> listings) {
+        this.mainActivity = mainActivity;
         this.listings = listings;
     }
 
@@ -31,7 +31,7 @@ public class ListingViewAdapter extends RecyclerView.Adapter<ListingViewAdapter.
     @Override
     public ListingViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         // Inflate your card layout (cardview_listing.xml)
-        View view = LayoutInflater.from(context).inflate(R.layout.cardview_listing, parent, false);
+        View view = LayoutInflater.from(mainActivity).inflate(R.layout.cardview_listing, parent, false);
         return new ListingViewHolder(view);
     }
 
@@ -44,7 +44,6 @@ public class ListingViewAdapter extends RecyclerView.Adapter<ListingViewAdapter.
         // Set text
         holder.textTitle.setText(listing.getTitle());
         holder.textWatchMethod.setText(listing.getWatchMethod());
-        //holder.textRating.setText("Rating: " + listing.getRating() + "/5");
 
         // TODO: load image from listing.getPhoto() API or Local Image or something else?
         // If you’re using local drawable:
@@ -66,8 +65,16 @@ public class ListingViewAdapter extends RecyclerView.Adapter<ListingViewAdapter.
             notifyItemRemoved(position); // notify RecyclerView
             notifyItemRangeChanged(position, listings.size());
         });
-    }
 
+        holder.infoButton.setOnClickListener(view -> {
+            mainActivity.EditListing(listing);
+        });
+
+    }
+    // Callback interface
+    public interface OnListingClickListener {
+        void onEditClick(Listing listing);
+    }
     // 3. Tells RecyclerView how many cards it needs
     @Override
     public int getItemCount() {
