@@ -1,0 +1,202 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="300sp"
+    android:layout_height="400sp"
+    android:layout_gravity="center_horizontal"
+    android:layout_margin="16dp"
+    app:cardBackgroundColor="@color/gray"
+    app:cardCornerRadius="10sp"
+    app:cardElevation="0sp">
+
+    <LinearLayout
+        android:id="@+id/LinearLayoutMainVertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/cardViewMenu"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="12sp"
+            android:layout_marginRight="12sp"
+            app:cardBackgroundColor="@color/gray"
+            app:cardElevation="0sp">
+
+            <TextView
+                android:id="@+id/textListingTitle"
+                android:layout_width="150sp"
+                android:layout_height="50sp"
+                android:layout_gravity="left|center_vertical"
+                android:layout_marginLeft="12dp"
+                android:layout_marginTop="6sp"
+                android:layout_marginBottom="6sp"
+                android:gravity="center_vertical"
+                android:shadowColor="@color/black"
+                android:shadowRadius="5"
+                android:text="Guardians of the Galaxy"
+                android:textColor="@color/white"
+                android:textColorHighlight="@color/blue"
+                android:textSize="20sp" />
+
+            <ImageButton
+                android:id="@+id/infoButton"
+                style="@style/Widget.AppCompat.ImageButton"
+                android:layout_width="24sp"
+                android:layout_height="24sp"
+                android:layout_gravity="right|center_vertical"
+                android:layout_marginTop="6sp"
+                android:layout_marginRight="12sp"
+                android:layout_marginBottom="6sp"
+                android:background="#00FFFFFF"
+                android:tint="@color/white"
+                android:tintMode="multiply"
+                app:srcCompat="@android:drawable/ic_menu_info_details" />
+
+        </androidx.cardview.widget.CardView>
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/cardViewImage"
+            android:layout_width="match_parent"
+            android:layout_height="205sp"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginLeft="12sp"
+            android:layout_marginRight="12sp"
+            android:elevation="10sp"
+            app:cardBackgroundColor="@color/gray_dark"
+            app:cardCornerRadius="10sp"
+            app:cardElevation="0sp">
+
+            <ImageView
+                android:id="@+id/imageView"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_margin="6sp"
+                android:scaleType="centerCrop"
+                tools:srcCompat="@android:drawable/ic_menu_gallery" />
+
+            <LinearLayout
+                android:id="@+id/linearLCARSTop"
+                android:layout_width="match_parent"
+                android:layout_height="10sp"
+                android:orientation="horizontal">
+
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/lcarsTop"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    app:cardBackgroundColor="@color/material_dynamic_primary60"
+                    app:cardCornerRadius="10sp"
+                    app:cardElevation="0sp" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/linearLCARSBot"
+                android:layout_width="match_parent"
+                android:layout_height="10sp"
+                android:layout_gravity="bottom"
+                android:layout_marginTop="15sp"
+                android:orientation="horizontal">
+
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/lcarsBot"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    app:cardBackgroundColor="@color/material_dynamic_secondary60"
+                    app:cardCornerRadius="10sp"
+                    app:cardElevation="0sp" />
+
+            </LinearLayout>
+
+        </androidx.cardview.widget.CardView>
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/cardViewBottom"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="12sp"
+            android:layout_marginTop="6sp"
+            android:layout_marginRight="12sp"
+            app:cardBackgroundColor="#00FFFFFF"
+            app:cardCornerRadius="10sp"
+            app:cardElevation="0sp">
+
+            <LinearLayout
+                android:id="@+id/verticalLayoutDescription"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_gravity="bottom"
+                android:layout_marginTop="12sp"
+                android:gravity="bottom"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:id="@+id/horizontalLayoutButtons"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:gravity="bottom|right"
+                    android:orientation="horizontal">
+
+                    <Button
+                        android:id="@+id/buttonCancel"
+                        android:layout_width="100sp"
+                        android:layout_height="55sp"
+                        android:layout_gravity="center_vertical"
+                        android:layout_marginRight="12sp"
+                        android:backgroundTint="#00FFFFFF"
+                        android:gravity="center_vertical"
+                        android:insetLeft="0sp"
+                        android:insetTop="0sp"
+                        android:insetRight="0sp"
+                        android:insetBottom="0sp"
+                        android:shadowColor="@color/black"
+                        android:shadowRadius="5"
+                        android:text="Remove"
+                        android:textAlignment="center"
+                        android:textColor="@color/white"
+                        android:textSize="12sp"
+                        app:strokeColor="@color/gray_light"
+                        app:strokeWidth="2sp" />
+
+                    <Button
+                        android:id="@+id/buttonAdd"
+                        android:layout_width="100sp"
+                        android:layout_height="55sp"
+                        android:layout_gravity="center_vertical"
+                        android:backgroundTint="@color/material_dynamic_secondary60"
+                        android:gravity="center_vertical"
+                        android:insetLeft="0sp"
+                        android:insetTop="0sp"
+                        android:insetRight="0sp"
+                        android:insetBottom="0sp"
+                        android:shadowColor="@color/black"
+                        android:shadowRadius="5"
+                        android:text="Not Watched"
+                        android:textAlignment="center"
+                        android:textColor="@color/white"
+                        android:textSize="12sp" />
+                </LinearLayout>
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/textWatchMethod"
+                android:layout_width="match_parent"
+                android:layout_height="45sp"
+                android:layout_gravity="top"
+                android:layout_marginLeft="16sp"
+                android:gravity="top"
+                android:shadowColor="@color/black"
+                android:shadowRadius="5"
+                android:text="Disney+"
+                android:textColor="@color/white"
+                android:textColorHighlight="@color/blue"
+                android:textSize="16sp" />
+
+        </androidx.cardview.widget.CardView>
+
+    </LinearLayout>
+
+</androidx.cardview.widget.CardView>
