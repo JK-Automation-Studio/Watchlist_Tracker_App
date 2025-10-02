@@ -1,10 +1,10 @@
 package com.jkstudio.playlisttrackerapp;
 
-import android.app.Dialog;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -128,21 +128,21 @@ public class MainActivity extends AppCompatActivity {
         EditText editWatchMethod = dialogView.findViewById(R.id.editTextWatchMethod);
         ImageView imageView = dialogView.findViewById(R.id.imageView);
 
-        Button btnAdd = dialogView.findViewById(R.id.buttonAdd);
-        Button btnCancel = dialogView.findViewById(R.id.buttonCancel);
+        Button btnYes = dialogView.findViewById(R.id.buttonAdd);
+        Button btnNo = dialogView.findViewById(R.id.buttonCancel);
 
         // Fill edit dialog fields with listing's current info, new Listings are blank
         editTitle.setText(listing.getTitle());
         editWatchMethod.setText(listing.getWatchMethod());
         if(listing.getTitle().isEmpty()) {
             imageView.setImageResource(R.drawable.ic_launcher_background); // set image to green grid
-            btnAdd.setText("Add");
+            btnYes.setText("Add");
         }
         else{
             imageView.setImageResource(R.drawable.ic_launcher_foreground); // set image to droid
             //TODO photo storage handled properly, set the image here to the Listing's photo
 
-            btnAdd.setText("Confirm");
+            btnYes.setText("Confirm");
         }
         // Build the dialog
         AlertDialog dialog = new AlertDialog.Builder(this)
@@ -151,8 +151,11 @@ public class MainActivity extends AppCompatActivity {
                 .create();
 
 
+        dialog.getWindow().clearFlags(WindowManager.LayoutParams.FLAG_ALT_FOCUSABLE_IM);
+        dialog.getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_NOTHING);
+
         //Click listener for edit dialog add button
-        btnAdd.setOnClickListener(v -> {
+        btnYes.setOnClickListener(v -> {
             // Title and method attributes from dialog
             String title = editTitle.getText().toString().trim();
             String method = editWatchMethod.getText().toString().trim();
@@ -164,50 +167,42 @@ public class MainActivity extends AppCompatActivity {
                 // Add to library if this is a new listing
                 if (!library.getListings().contains(listing)) {
                     library.addListing(listing);
+                    updateLibraryFile();
                 }
 
                 // Update RecyclerView
                 adapter.notifyDataSetChanged();
 
-                // Close the popup
+                // Update empty text if needed and close the popup
                 updateEmptyView();
                 dialog.dismiss();
             } else {
-                editTitle.setError("Title required");
+                editTitle.setError("Title required"); // Show error in text box if empty title
             }
         });
 
-        btnCancel.setOnClickListener(v -> {
+
+        // Track clicks on Negative button, update Empty Text if needed and dismiss dialog
+        btnNo.setOnClickListener(v -> {
             updateEmptyView();
             dialog.dismiss();
         });
 
+        // Finally show dialog on screen
         dialog.show();
 
     }
 
-    public void retrieveListings(){
-        //TODO Get file from storage
-        // get Listings from file
-        // set Library with all listings
+    private void updateLibraryFile() {
+        // TODO Create method for writing Library to libraryFile
+    }
+
+    public void retrieveLibraryFile(){
+        // TODO Create method for retrieving Library from libraryFile
     }
 
     public void onPhotoClick(View v){
-
+        // TODO IDK how to do photo yet so this is here JIC
     }
 
-    public void onClickAdd(View v){
-        //TODO get current listing's stuff from dialog_edit_listing
-        // create new listing with info
-        // add to library
-        // update recycler
-        // Save entered data back into Listing
-
-
-    }
-
-    public void onClickCancel(View v){
-        //TODO Remove dialog_edit_listing view from screen
-
-    }
 }
