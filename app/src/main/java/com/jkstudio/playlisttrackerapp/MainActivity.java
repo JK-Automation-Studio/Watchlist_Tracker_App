@@ -2,11 +2,13 @@ package com.jkstudio.playlisttrackerapp;
 
 import android.app.Dialog;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AlertDialog;
@@ -21,6 +23,7 @@ public class MainActivity extends AppCompatActivity {
 
     Library library;
     ListingViewAdapter adapter;
+    TextView emptyText;
 
 
     @Override
@@ -33,6 +36,7 @@ public class MainActivity extends AppCompatActivity {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
+
 
 
         // create new library and fill with temp Listings
@@ -91,8 +95,23 @@ public class MainActivity extends AppCompatActivity {
 
 
 
+        updateEmptyView();
+
 
     }
+
+    public void updateEmptyView() {
+        emptyText = findViewById(R.id.textViewEmptyList);
+
+        if(library.getCount()==0){
+            emptyText.setVisibility(View.VISIBLE);
+        }
+        else{
+            emptyText.setVisibility(View.INVISIBLE);
+            Log.i("i",""+library.getCount());
+        }
+    }
+
     public void onFabClick(View v){
         EditListing(new Listing());
     }
@@ -100,6 +119,7 @@ public class MainActivity extends AppCompatActivity {
     public void EditListing(Listing listing) {
         //TODO edit photo option somehow
 
+        // Dialog Edit Listing
         // Inflate the dialog layout
         LayoutInflater inflater = LayoutInflater.from(this);
         View dialogView = inflater.inflate(R.layout.dialog_edit_listing, null);
@@ -114,7 +134,7 @@ public class MainActivity extends AppCompatActivity {
         // Fill edit dialog fields with listing's current info, new Listings are blank
         editTitle.setText(listing.getTitle());
         editWatchMethod.setText(listing.getWatchMethod());
-        if(listing.getPhoto().isEmpty()) {
+        if(listing.getTitle().isEmpty()) {
             imageView.setImageResource(R.drawable.ic_launcher_background); // set image to green grid
             btnAdd.setText("Add");
         }
@@ -131,6 +151,7 @@ public class MainActivity extends AppCompatActivity {
                 .create();
 
 
+        //Click listener for edit dialog add button
         btnAdd.setOnClickListener(v -> {
             // Title and method attributes from dialog
             String title = editTitle.getText().toString().trim();
@@ -142,20 +163,24 @@ public class MainActivity extends AppCompatActivity {
 
                 // Add to library if this is a new listing
                 if (!library.getListings().contains(listing)) {
-                    library.getListings().add(listing);
+                    library.addListing(listing);
                 }
 
                 // Update RecyclerView
                 adapter.notifyDataSetChanged();
 
                 // Close the popup
+                updateEmptyView();
                 dialog.dismiss();
             } else {
                 editTitle.setError("Title required");
             }
         });
 
-        btnCancel.setOnClickListener(v -> dialog.dismiss());
+        btnCancel.setOnClickListener(v -> {
+            updateEmptyView();
+            dialog.dismiss();
+        });
 
         dialog.show();
 

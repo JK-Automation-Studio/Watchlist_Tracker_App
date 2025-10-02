@@ -43,4 +43,20 @@
         android:onClick="onRecyclerClick"
         app:layout_anchorGravity="center_horizontal" />
 
+    <TextView
+        android:id="@+id/textViewEmptyList"
+        android:layout_width="200sp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="80sp"
+        android:elevation="3sp"
+        android:gravity="center_horizontal"
+        android:shadowColor="@color/black"
+        android:shadowRadius="5"
+        android:text="You don't have any listings.
+        Click the plus button to add one!"
+        android:textAlignment="center"
+        android:textColor="@color/white"
+        android:visibility="invisible" />
+
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

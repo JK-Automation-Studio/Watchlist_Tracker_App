@@ -45,6 +45,12 @@ public class Library {
         this.count--;
     }
 
+    public void removeListing(int index){
+        // Remove item from arraylist
+        this.listings.remove(index);
+        this.count--;
+    }
+
     public Listing getListingByID(int id){
         return(this.listings.get(id));
 

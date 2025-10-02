@@ -32,6 +32,8 @@ public class ListingViewAdapter extends RecyclerView.Adapter<ListingViewAdapter.
     public ListingViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         // Inflate your card layout (cardview_listing.xml)
         View view = LayoutInflater.from(mainActivity).inflate(R.layout.cardview_listing, parent, false);
+
+
         return new ListingViewHolder(view);
     }
 
@@ -45,11 +47,8 @@ public class ListingViewAdapter extends RecyclerView.Adapter<ListingViewAdapter.
         holder.textTitle.setText(listing.getTitle());
         holder.textWatchMethod.setText(listing.getWatchMethod());
 
-        // TODO: load image from listing.getPhoto() API or Local Image or something else?
-        // If you’re using local drawable:
-        holder.imagePoster.setImageResource(R.drawable.ic_launcher_foreground);
-        // If using URL: use Glide or Picasso library.
-
+        // TODO: load image from listing.getPhoto() - API or Local Image or something else?
+        holder.imagePoster.setImageResource(R.drawable.ic_launcher_foreground); // set card photo to droid
 
         // Example button usage:
         holder.btnWatched.setText(listing.getWatched() ? "Watched" : "Not Watched");
@@ -61,7 +60,9 @@ public class ListingViewAdapter extends RecyclerView.Adapter<ListingViewAdapter.
         });
 
         holder.btnRemove.setOnClickListener(v -> {
-            listings.remove(position);   // remove this movie from the list
+            //listings.remove(position);   // remove this movie from the list
+            mainActivity.library.removeListing(position);
+            mainActivity.updateEmptyView();
             notifyItemRemoved(position); // notify RecyclerView
             notifyItemRangeChanged(position, listings.size());
         });
@@ -85,7 +86,7 @@ public class ListingViewAdapter extends RecyclerView.Adapter<ListingViewAdapter.
     // ViewHolder Inner Class
     // ------------------------
     public static class ListingViewHolder extends RecyclerView.ViewHolder {
-        TextView textTitle, textWatchMethod, textRating;
+        TextView textTitle, textWatchMethod, textEmpty;
         ImageView imagePoster;
         ImageButton infoButton; // e.g. menu or overflow button
         Button btnWatched, btnRemove;
@@ -100,7 +101,8 @@ public class ListingViewAdapter extends RecyclerView.Adapter<ListingViewAdapter.
             imagePoster = itemView.findViewById(R.id.imageView);
 
             textWatchMethod = itemView.findViewById(R.id.textWatchMethod);
-            //textRating = itemView.findViewById(R.id.textRating);
+
+            textEmpty = itemView.findViewById(R.id.textViewEmptyList);
 
             btnRemove = itemView.findViewById(R.id.buttonCancel);
             btnWatched = itemView.findViewById(R.id.buttonAdd);
