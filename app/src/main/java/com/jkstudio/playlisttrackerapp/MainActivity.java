@@ -1,10 +1,14 @@
 package com.jkstudio.playlisttrackerapp;
 
+import android.content.Context;
 import android.os.Bundle;
+import android.os.SystemClock;
 import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.WindowManager;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -130,6 +134,15 @@ public class MainActivity extends AppCompatActivity {
         // Fill edit dialog fields with listing's current info, new Listings are blank
         editTitle.setText(listing.getTitle());
         editWatchMethod.setText(listing.getWatchMethod());
+        // Title requests focus for easy access..?
+
+
+
+
+
+
+
+
         if(listing.getTitle().isEmpty()) {
             imageView.setImageResource(R.drawable.add_photo_bg); // set image to green grid
             btnYes.setText("Add");
@@ -187,7 +200,24 @@ public class MainActivity extends AppCompatActivity {
         // Finally show dialog on screen
         dialog.show();
 
+        editTitle.setFocusable(true);
+        editTitle.setFocusableInTouchMode(true);
+        editTitle.requestFocus();
+
+        editTitle.requestFocus();
+        dialog.getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_VISIBLE);
+        editTitle.post(new Runnable() {
+            @Override public void run() {
+                InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+                imm.showSoftInput(editTitle, InputMethodManager.SHOW_IMPLICIT);
+            }
+        });
+
     }
+
+
+
+
 
     private void updateLibraryFile() {
         // TODO Create method for writing Library to libraryFile
