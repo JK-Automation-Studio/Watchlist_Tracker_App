@@ -13,7 +13,13 @@
         android:id="@+id/cardViewMenuBar"
         android:layout_width="match_parent"
         android:layout_height="95sp"
-        app:cardBackgroundColor="@color/material_dynamic_primary70" >
+        app:cardBackgroundColor="#00ffffff">
+
+        <View
+            android:id="@+id/MenuBar"
+            android:layout_width="wrap_content"
+            android:layout_height="95sp"
+            android:background="@drawable/menu_bar" />
 
         <TextView
             android:id="@+id/textViewAppTitle"
@@ -24,30 +30,23 @@
             android:layout_marginTop="48sp"
             android:shadowColor="@color/black"
             android:shadowRadius="5"
-            android:text="Playlist Watcher"
+            android:text="@string/app_name"
             android:textColor="@color/white"
             android:textSize="24sp" />
     </androidx.cardview.widget.CardView>
-
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/main"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:backgroundTint="@color/blue"
-        android:foregroundTint="@color/blue"
-        tools:context=".MainActivity" />
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/fabAddListing"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="bottom|right"
-        android:layout_margin="16dp"
+        android:layout_margin="32sp"
         android:onClick="onFabClick"
         android:src="@android:drawable/ic_input_add"
         android:tint="@color/material_dynamic_primary50"
         app:backgroundTint="@color/material_dynamic_primary70"
-        app:borderWidth="1dp" />
+        app:borderWidth="1dp"
+         />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerView"

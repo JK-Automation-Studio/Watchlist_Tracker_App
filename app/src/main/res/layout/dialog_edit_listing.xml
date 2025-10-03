@@ -24,7 +24,7 @@
             <EditText
                 android:id="@+id/editTextTitle"
                 style="@style/Widget.AppCompat.AutoCompleteTextView"
-                android:layout_width="200sp"
+                android:layout_width="300sp"
                 android:layout_height="50sp"
                 android:layout_gravity="left|center_vertical"
                 android:layout_marginLeft="12sp"

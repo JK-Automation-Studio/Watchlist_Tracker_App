@@ -31,11 +31,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_main);
-        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
-            Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
-            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
-            return insets;
-        });
+
 
 
 
@@ -135,11 +131,11 @@ public class MainActivity extends AppCompatActivity {
         editTitle.setText(listing.getTitle());
         editWatchMethod.setText(listing.getWatchMethod());
         if(listing.getTitle().isEmpty()) {
-            imageView.setImageResource(R.drawable.ic_launcher_background); // set image to green grid
+            imageView.setImageResource(R.drawable.add_photo_bg); // set image to green grid
             btnYes.setText("Add");
         }
         else{
-            imageView.setImageResource(R.drawable.ic_launcher_foreground); // set image to droid
+            imageView.setImageResource(R.drawable.default_listing_photo); // set image to default
             //TODO photo storage handled properly, set the image here to the Listing's photo
 
             btnYes.setText("Confirm");
