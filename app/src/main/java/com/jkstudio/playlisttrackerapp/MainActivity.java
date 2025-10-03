@@ -1,6 +1,8 @@
 package com.jkstudio.playlisttrackerapp;
 
 import android.content.Context;
+import android.graphics.drawable.ColorDrawable;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.SystemClock;
 import android.util.Log;
@@ -196,6 +198,12 @@ public class MainActivity extends AppCompatActivity {
             updateEmptyView();
             dialog.dismiss();
         });
+
+        //set dialog bg to invisible
+        dialog.getWindow().setBackgroundDrawable(new ColorDrawable(android.graphics.Color.TRANSPARENT));
+
+        dialog.getWindow().setDimAmount(0.65f);
+
 
         // Finally show dialog on screen
         dialog.show();

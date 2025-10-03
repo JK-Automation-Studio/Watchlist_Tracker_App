@@ -10,6 +10,24 @@
     app:cardCornerRadius="10sp"
     app:cardElevation="0sp">
 
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cardViewListingBgShadow"
+        android:layout_width="300sp"
+        android:layout_height="400sp"
+        app:cardBackgroundColor="@color/black"
+        app:cardElevation="0sp" />
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cardViewListingBg"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_gravity="top|left"
+        android:layout_marginRight="4sp"
+        android:layout_marginBottom="4sp"
+        app:cardBackgroundColor="@color/gray"
+        app:cardCornerRadius="8sp"
+        app:cardElevation="0sp" />
+
     <LinearLayout
         android:id="@+id/LinearLayoutMainVertical"
         android:layout_width="match_parent"
