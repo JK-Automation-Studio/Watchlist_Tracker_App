@@ -33,7 +33,9 @@
                 android:hint="Listing Title"
                 android:inputType="text"
                 android:shadowColor="@color/black"
-                android:shadowRadius="5"
+                android:shadowDx="4"
+                android:shadowDy="2"
+                android:shadowRadius="1"
                 android:textColor="@color/white"
                 android:textColorHint="@color/white"
                 android:textSize="20sp" />
@@ -48,16 +50,27 @@
             android:layout_marginLeft="12sp"
             android:layout_marginTop="5sp"
             android:layout_marginRight="12sp"
-            android:background="@color/white"
-            android:backgroundTint="@color/gray_dark"
+            android:background="#00FFFFFF"
             app:cardBackgroundColor="#00FFFFFF"
             app:cardCornerRadius="10sp"
             app:cardElevation="0sp">
 
             <ImageView
+                android:id="@+id/imageViewShadowEditListing"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@color/black"
+                android:clickable="true"
+                android:onClick="onPhotoClick"
+                android:scaleType="centerCrop"
+                tools:srcCompat="@android:drawable/ic_menu_report_image" />
+
+            <ImageView
                 android:id="@+id/imageView"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+                android:layout_marginRight="4sp"
+                android:layout_marginBottom="3sp"
                 android:background="@color/gray_dark"
                 android:clickable="true"
                 android:onClick="onPhotoClick"
@@ -83,7 +96,9 @@
                 android:hint="Service"
                 android:inputType="text"
                 android:shadowColor="@color/black"
-                android:shadowRadius="5"
+                android:shadowDx="4"
+                android:shadowDy="2"
+                android:shadowRadius="1"
                 android:textColor="@color/white"
                 android:textColorHint="@color/white"
                 android:textSize="16sp" />
@@ -101,6 +116,7 @@
 
                 <Button
                     android:id="@+id/buttonCancel"
+                    style="@style/Widget.Material3.Button.OutlinedButton"
                     android:layout_width="100sp"
                     android:layout_height="55sp"
                     android:layout_gravity="center_vertical"
@@ -112,7 +128,9 @@
                     android:insetRight="0sp"
                     android:insetBottom="0sp"
                     android:shadowColor="@color/black"
-                    android:shadowRadius="5"
+                    android:shadowDx="4"
+                    android:shadowDy="2"
+                    android:shadowRadius="1"
                     android:text="Cancel"
                     android:textAlignment="center"
                     android:textColor="@color/white"
@@ -122,6 +140,7 @@
 
                 <Button
                     android:id="@+id/buttonAdd"
+                    style="@style/Widget.Material3.Button.OutlinedButton"
                     android:layout_width="100sp"
                     android:layout_height="55sp"
                     android:layout_gravity="center_vertical"
@@ -132,7 +151,9 @@
                     android:insetRight="0sp"
                     android:insetBottom="0sp"
                     android:shadowColor="@color/black"
-                    android:shadowRadius="5"
+                    android:shadowDx="4"
+                    android:shadowDy="2"
+                    android:shadowRadius="1"
                     android:text="Add"
                     android:textAlignment="center"
                     android:textColor="@color/white"
