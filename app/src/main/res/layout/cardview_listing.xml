@@ -187,7 +187,7 @@
                 android:layout_marginLeft="4sp"
                 android:layout_marginTop="0sp"
                 android:layout_marginRight="6sp"
-                android:layout_marginBottom="8sp">
+                android:layout_marginBottom="6sp">
 
                 <androidx.cardview.widget.CardView
                     android:id="@+id/lcarsBotShadow"
