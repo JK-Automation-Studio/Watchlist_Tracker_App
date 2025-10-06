@@ -2,12 +2,9 @@ package com.jkstudio.playlisttrackerapp;
 
 import android.content.Context;
 import android.graphics.drawable.ColorDrawable;
-import android.os.Build;
 import android.os.Bundle;
-import android.os.SystemClock;
 import android.util.Log;
 import android.view.LayoutInflater;
-import android.view.MotionEvent;
 import android.view.View;
 import android.view.WindowManager;
 import android.view.inputmethod.InputMethodManager;
@@ -15,13 +12,9 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
-
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.graphics.Insets;
-import androidx.core.view.ViewCompat;
-import androidx.core.view.WindowInsetsCompat;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -34,15 +27,18 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        // Run default onCreate methods before our own
         super.onCreate(savedInstanceState);
+        // Edge to Edge, IDK if needed
         EdgeToEdge.enable(this);
+        // Set content view to main activity's xml file
         setContentView(R.layout.activity_main);
 
 
 
 
         // create new library and fill with temp Listings
-        // Replace with retrieving library from file
+        // TODO Replace with retrieving library from file
         library = new Library();
 
         Listing listing = new Listing();
@@ -87,28 +83,29 @@ public class MainActivity extends AppCompatActivity {
         library.addListing(listing4);
 
 
-
-        // get recyclerView and
-        RecyclerView recyclerView = findViewById(R.id.recyclerView);
-        recyclerView.setLayoutManager(new LinearLayoutManager(this));
-
-        adapter = new ListingViewAdapter(this, library.getListings());
-        recyclerView.setAdapter(adapter);
-
-
-
+        // Sets visibility of empty list hint text
         updateEmptyView();
 
 
+        // Create recycler view and set layout to linear
+        RecyclerView recyclerView = findViewById(R.id.recyclerView);
+        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+        // Use adapter class to update recycle views
+        adapter = new ListingViewAdapter(this, library.getListings());
+        recyclerView.setAdapter(adapter);
     }
 
     public void updateEmptyView() {
+
+        // Set variable for text field
         emptyText = findViewById(R.id.textViewEmptyList);
 
+        // If library is empty, show empty list hint
         if(library.getCount()==0){
             emptyText.setVisibility(View.VISIBLE);
         }
         else{
+            // if library not empty, hide list hint and log library's count
             emptyText.setVisibility(View.INVISIBLE);
             Log.i("i",""+library.getCount());
         }
@@ -126,51 +123,49 @@ public class MainActivity extends AppCompatActivity {
         LayoutInflater inflater = LayoutInflater.from(this);
         View dialogView = inflater.inflate(R.layout.dialog_edit_listing, null);
 
+        // Set variables for editable attributes
         EditText editTitle = dialogView.findViewById(R.id.editTextTitle);
         EditText editWatchMethod = dialogView.findViewById(R.id.editTextWatchMethod);
         ImageView imageView = dialogView.findViewById(R.id.imageView);
 
+        // Set variables for buttons in dialog
         Button btnYes = dialogView.findViewById(R.id.buttonAdd);
         Button btnNo = dialogView.findViewById(R.id.buttonCancel);
 
         // Fill edit dialog fields with listing's current info, new Listings are blank
         editTitle.setText(listing.getTitle());
         editWatchMethod.setText(listing.getWatchMethod());
-        // Title requests focus for easy access..?
+        imageView.setImageResource(R.drawable.default_listing_photo); // set image to default
+
+        //TODO Set photo attribute with Listing's photo chosen by user, if there
 
 
-
-
-
-
-
-
+        // Check for current listing info, if empty is new Listing.
+        // Currently checking title to set photo, later will check photo attribute
         if(listing.getTitle().isEmpty()) {
             imageView.setImageResource(R.drawable.add_photo_bg); // set image to green grid
             btnYes.setText("Add");
         }
         else{
-            imageView.setImageResource(R.drawable.default_listing_photo); // set image to default
-            //TODO photo storage handled properly, set the image here to the Listing's photo
-
             btnYes.setText("Confirm");
         }
         // Build the dialog
         AlertDialog dialog = new AlertDialog.Builder(this)
-                //.setTitle("Edit Listing")
                 .setView(dialogView)
                 .create();
 
 
+        // Settings for dialog window, attempt for keyboard to not push alert around
         dialog.getWindow().clearFlags(WindowManager.LayoutParams.FLAG_ALT_FOCUSABLE_IM);
         dialog.getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_NOTHING);
 
-        //Click listener for edit dialog add button
+        //Click listener for edit dialog add/confirm button
         btnYes.setOnClickListener(v -> {
             // Title and method attributes from dialog
             String title = editTitle.getText().toString().trim();
             String method = editWatchMethod.getText().toString().trim();
 
+            // if title has text, set listing's fields
             if (!title.isEmpty()) {
                 listing.setTitle(title);
                 listing.setWatchMethod(method);
@@ -181,13 +176,14 @@ public class MainActivity extends AppCompatActivity {
                     updateLibraryFile();
                 }
 
-                // Update RecyclerView
+                // Use the adapter to update RecyclerView of changes
                 adapter.notifyDataSetChanged();
 
                 // Update empty text if needed and close the popup
                 updateEmptyView();
                 dialog.dismiss();
             } else {
+                // Title is empty, write error to text box
                 editTitle.setError("Title required"); // Show error in text box if empty title
             }
         });
@@ -199,20 +195,22 @@ public class MainActivity extends AppCompatActivity {
             dialog.dismiss();
         });
 
-        //set dialog bg to invisible
+        // Set dialog bounding box to invisible
         dialog.getWindow().setBackgroundDrawable(new ColorDrawable(android.graphics.Color.TRANSPARENT));
 
+        // Set background dim amount
         dialog.getWindow().setDimAmount(0.65f);
-
 
         // Finally show dialog on screen
         dialog.show();
 
+        // Focus keyboard cursor on Title box
         editTitle.setFocusable(true);
         editTitle.setFocusableInTouchMode(true);
         editTitle.requestFocus();
 
-        editTitle.requestFocus();
+        // Set SoftwareInputMode to visible, then schedule a post in
+        // EditTitle to create InputManager for showing Software Keyboard
         dialog.getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_VISIBLE);
         editTitle.post(new Runnable() {
             @Override public void run() {
@@ -228,15 +226,15 @@ public class MainActivity extends AppCompatActivity {
 
 
     private void updateLibraryFile() {
-        // TODO Create method for writing Library to libraryFile
+        // TODO Create method for writing Library's listings to Library File in storage
     }
 
     public void retrieveLibraryFile(){
-        // TODO Create method for retrieving Library from libraryFile
+        // TODO Create method for retrieving Library from Library File in storage
     }
 
     public void onPhotoClick(View v){
-        // TODO IDK how to do photo yet so this is here JIC
+        // TODO If needed a method for creating photo clicker popup from photo click
     }
 
 }

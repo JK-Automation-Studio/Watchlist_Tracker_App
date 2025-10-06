@@ -5,11 +5,11 @@ import java.util.ArrayList;
 
 /*
 USAGE
-Create Library object called Movie
+Create Library object
 Set Library Title to Movies
 AddListing() * n
 
-Show Listings
+Show Listings in recycler
  */
 public class Library {
     private final ArrayList<Listing> listings;
@@ -40,13 +40,13 @@ public class Library {
     }
 
     public void removeListing(Listing listing){
-        // Remove item from arraylist
+        // Remove item from arraylist by listing
         this.listings.remove(listing);
         this.count--;
     }
 
     public void removeListing(int index){
-        // Remove item from arraylist
+        // Remove item from arraylist by index
         this.listings.remove(index);
         this.count--;
     }

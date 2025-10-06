@@ -43,22 +43,23 @@ public class ListingViewAdapter extends RecyclerView.Adapter<ListingViewAdapter.
     public void onBindViewHolder(@NonNull ListingViewHolder holder, int position) {
         Listing listing = listings.get(position);
 
-        // Set text
+        // Set text fields
         holder.textTitle.setText(listing.getTitle());
         holder.textWatchMethod.setText(listing.getWatchMethod());
 
         // TODO: load image from listing.getPhoto() - API or Local Image or something else?
         holder.imagePoster.setImageResource(R.drawable.ic_launcher_foreground); // set card photo to droid
 
-        // Example button usage:
+        // Button Text filled in from listing.getWatched
         holder.btnWatched.setText(listing.getWatched() ? "Watched" : "Not Watched");
 
-        // Handle clicks
+        // Handle clicks of watched button
         holder.btnWatched.setOnClickListener(v -> {
-            listing.setWatched(!listing.getWatched()); // toggle watched state
+            listing.setWatched(!listing.getWatched()); // toggle listing's watched state
             notifyItemChanged(position); // refresh this card
         });
 
+        // Listener for remove button
         holder.btnRemove.setOnClickListener(v -> {
             //listings.remove(position);   // remove this movie from the list
             mainActivity.library.removeListing(position);
@@ -67,6 +68,7 @@ public class ListingViewAdapter extends RecyclerView.Adapter<ListingViewAdapter.
             notifyItemRangeChanged(position, listings.size());
         });
 
+        // Listener for info/edit button
         holder.infoButton.setOnClickListener(view -> {
             mainActivity.EditListing(listing);
         });
@@ -86,26 +88,24 @@ public class ListingViewAdapter extends RecyclerView.Adapter<ListingViewAdapter.
     // ViewHolder Inner Class
     // ------------------------
     public static class ListingViewHolder extends RecyclerView.ViewHolder {
-        TextView textTitle, textWatchMethod, textEmpty;
-        ImageView imagePoster;
-        ImageButton infoButton; // e.g. menu or overflow button
-        Button btnWatched, btnRemove;
+        TextView textTitle, textWatchMethod; // Texts for listing
+        TextView textEmpty; // Text for empty list hint
+        ImageView imagePoster; // Image for listing
+        ImageButton infoButton; // Edit button for listing
+        Button btnWatched, btnRemove; // Buttons for watch / remove for listing
 
         public ListingViewHolder(@NonNull View itemView) {
             super(itemView);
 
-            // Find all views inside cardview_listing.xml
+            // Find all views for card view
             textTitle = itemView.findViewById(R.id.textListingTitle);
             infoButton = itemView.findViewById(R.id.infoButton);
-
             imagePoster = itemView.findViewById(R.id.imageView);
-
             textWatchMethod = itemView.findViewById(R.id.textWatchMethod);
-
-            textEmpty = itemView.findViewById(R.id.textViewEmptyList);
-
             btnRemove = itemView.findViewById(R.id.buttonCancel);
             btnWatched = itemView.findViewById(R.id.buttonAdd);
+
+            textEmpty = itemView.findViewById(R.id.textViewEmptyList);
         }
     }
 }

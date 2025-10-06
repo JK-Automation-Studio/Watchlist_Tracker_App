@@ -18,6 +18,7 @@ public class Listing {
     Add listing to Library (Movie or TV)
      */
     public Listing(){
+        // Default Attributes
         this.id = -1;
         this.title = "";
         this.watchMethod = "";
