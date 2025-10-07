@@ -122,6 +122,23 @@
                     android:onClick="onPhotoClick"
                     android:scaleType="centerCrop" />
 
+                <TextView
+                    android:id="@+id/textEmptyPhoto"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal|center_vertical"
+                    android:layout_marginLeft="60sp"
+                    android:layout_marginRight="60sp"
+                    android:elevation="0sp"
+                    android:shadowColor="@color/black"
+                    android:shadowDx="4"
+                    android:shadowDy="2"
+                    android:shadowRadius="1"
+                    android:text="No photo found. \nClick here to add one!"
+                    android:textAlignment="center"
+                    android:textColor="@color/white"
+                    android:textSize="16sp" />
+
             </androidx.cardview.widget.CardView>
         </androidx.cardview.widget.CardView>
 

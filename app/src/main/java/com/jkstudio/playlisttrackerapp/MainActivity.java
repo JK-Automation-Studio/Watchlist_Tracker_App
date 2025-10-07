@@ -27,6 +27,7 @@ public class MainActivity extends AppCompatActivity {
     Library library;
     ListingViewAdapter adapter;
     TextView emptyText;
+    TextView textEmptyPhoto;
     ImageView imageView;
     String uri;
     Listing listing;
@@ -141,6 +142,7 @@ public class MainActivity extends AppCompatActivity {
         // Set variables for buttons in dialog
         Button btnYes = dialogView.findViewById(R.id.buttonAdd);
         Button btnNo = dialogView.findViewById(R.id.buttonCancel);
+        textEmptyPhoto = dialogView.findViewById(R.id.textEmptyPhoto);
 
         // Fill edit dialog fields with listing's current info, new Listings are blank
         editTitle.setText(listing.getTitle());
@@ -148,14 +150,15 @@ public class MainActivity extends AppCompatActivity {
         //imageView.setImageResource(R.drawable.default_listing_photo); // set image to default
 
         // Check if listing's photo has been set yet, if null, new listing
-        if(listing.getPhoto() == null)
+        if(listing.getPhoto() == "")
         {
             imageView.setImageResource(R.drawable.add_photo_bg); // set image to green grid
+            textEmptyPhoto.setVisibility(View.VISIBLE);
 
         }
         else{
             imageView.setImageURI(Uri.parse(listing.getPhoto()));
-
+            textEmptyPhoto.setVisibility(View.INVISIBLE);
         }
 
         //TODO Set photo attribute with Listing's photo chosen by user, if there
@@ -268,6 +271,7 @@ public class MainActivity extends AppCompatActivity {
             if (selectedImageUri != null) {
                 imageView.setImageURI(selectedImageUri);
                 imageView.setTag(selectedImageUri.toString());
+                textEmptyPhoto.setVisibility(View.INVISIBLE);
                 //listing.setPhoto(selectedImageUri.toString());
             }
         }
