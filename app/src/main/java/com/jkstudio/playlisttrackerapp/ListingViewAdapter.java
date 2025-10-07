@@ -1,6 +1,7 @@
 package com.jkstudio.playlisttrackerapp;
 
 import android.content.Context;
+import android.net.Uri;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -47,8 +48,14 @@ public class ListingViewAdapter extends RecyclerView.Adapter<ListingViewAdapter.
         holder.textTitle.setText(listing.getTitle());
         holder.textWatchMethod.setText(listing.getWatchMethod());
 
-        // TODO: load image from listing.getPhoto() - API or Local Image or something else?
         holder.imagePoster.setImageResource(R.drawable.ic_launcher_foreground); // set card photo to droid
+
+        if(listing.getPhoto()!=""){
+            holder.imagePoster.setImageURI(Uri.parse(listing.getPhoto()));
+
+        }
+
+        // TODO: load image from listing.getPhoto() - API or Local Image or something else?
 
         // Button Text filled in from listing.getWatched
         holder.btnWatched.setText(listing.getWatched() ? "Watched" : "Not Watched");

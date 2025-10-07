@@ -1,5 +1,7 @@
 package com.jkstudio.playlisttrackerapp;
 
+import android.net.Uri;
+
 public class Listing {
     private int id;
     private String title;
@@ -83,6 +85,7 @@ public class Listing {
         this.watched = watch;
     }
     public String getPhoto(){
+
         return(this.photo);
     }
     public void setPhoto(String path){
