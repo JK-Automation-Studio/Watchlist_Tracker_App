@@ -152,7 +152,7 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
         android:layout_marginTop="150sp"
-        android:elevation="3sp"
+        android:elevation="1sp"
         android:gravity="center_horizontal"
         android:shadowColor="@color/black"
         android:shadowDx="4"
