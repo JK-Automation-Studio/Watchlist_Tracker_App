@@ -14,19 +14,30 @@
         android:id="@+id/cardViewListingBgShadow"
         android:layout_width="300sp"
         android:layout_height="400sp"
-        app:cardBackgroundColor="@color/black"
+        android:visibility="gone"
+        app:cardBackgroundColor="#00000000"
         app:cardCornerRadius="15sp"
         app:cardElevation="0sp" />
+
+    <ImageView
+        android:id="@+id/imageCardViewBorder"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:elevation="0sp"
+        android:scaleType="fitXY"
+        app:srcCompat="@drawable/gradient_border" />
 
     <androidx.cardview.widget.CardView
         android:id="@+id/cardViewListingBg"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_gravity="top|left"
-        android:layout_marginRight="3sp"
+        android:layout_marginLeft="2sp"
+        android:layout_marginTop="2sp"
+        android:layout_marginRight="2sp"
         android:layout_marginBottom="2sp"
         app:cardBackgroundColor="@color/gray"
-        app:cardCornerRadius="15sp"
+        app:cardCornerRadius="12sp"
         app:cardElevation="0sp" />
 
     <LinearLayout
@@ -41,7 +52,7 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="12sp"
             android:layout_marginRight="12sp"
-            app:cardBackgroundColor="@color/gray"
+            app:cardBackgroundColor="#00FFFFFF"
             app:cardElevation="0sp">
 
             <TextView
@@ -105,28 +116,28 @@
             app:cardElevation="0sp">
 
             <ImageView
-                android:id="@+id/imageViewShadow"
+                android:id="@+id/imageCardViewImageBorder"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_marginLeft="0sp"
                 android:layout_marginRight="0sp"
                 android:layout_marginBottom="0sp"
-                android:background="@color/black"
                 android:elevation="0sp"
-                android:scaleType="centerCrop" />
+                android:scaleType="centerCrop"
+                app:srcCompat="@drawable/gradient_border_inside" />
 
             <androidx.cardview.widget.CardView
                 android:id="@+id/cardViewImageNoShadow"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_gravity="center_horizontal"
-                android:layout_marginLeft="0sp"
-                android:layout_marginTop="0sp"
+                android:layout_marginLeft="2sp"
+                android:layout_marginTop="2sp"
                 android:layout_marginRight="2sp"
                 android:layout_marginBottom="2sp"
                 android:elevation="0sp"
                 app:cardBackgroundColor="#00424242"
-                app:cardCornerRadius="10sp"
+                app:cardCornerRadius="8sp"
                 app:cardElevation="0sp">
 
                 <ImageView
@@ -148,7 +159,7 @@
                 android:id="@+id/linearLCARSTop"
                 android:layout_width="match_parent"
                 android:layout_height="14sp"
-                android:layout_marginLeft="4sp"
+                android:layout_marginLeft="6sp"
                 android:layout_marginTop="4sp"
                 android:layout_marginRight="6sp"
                 android:background="#00FFFFFF">
@@ -184,7 +195,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="14sp"
                 android:layout_gravity="bottom"
-                android:layout_marginLeft="4sp"
+                android:layout_marginLeft="6sp"
                 android:layout_marginTop="0sp"
                 android:layout_marginRight="6sp"
                 android:layout_marginBottom="6sp">

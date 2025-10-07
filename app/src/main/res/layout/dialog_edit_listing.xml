@@ -5,32 +5,46 @@
     android:layout_width="350sp"
     android:layout_height="500sp"
     android:layout_gravity="center_horizontal"
-    app:cardBackgroundColor="@color/gray"
-    app:cardCornerRadius="15sp">
+    app:cardBackgroundColor="#00A2A2A2"
+    app:cardCornerRadius="15sp"
+    app:cardElevation="0sp">
 
     <androidx.cardview.widget.CardView
         android:id="@+id/cardViewListingBgShadow"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:visibility="gone"
         app:cardBackgroundColor="@color/black"
         app:cardCornerRadius="15sp"
-        app:cardElevation="0sp" />
+        app:cardElevation="0sp">
+
+    </androidx.cardview.widget.CardView>
+
+    <ImageView
+        android:id="@+id/imageGradientBorderDialogBg"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:elevation="0sp"
+        app:srcCompat="@drawable/gradient_border" />
 
     <androidx.cardview.widget.CardView
         android:id="@+id/cardViewListingBg"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_gravity="top|left"
+        android:layout_marginLeft="2sp"
+        android:layout_marginTop="2sp"
         android:layout_marginRight="2sp"
         android:layout_marginBottom="2sp"
         app:cardBackgroundColor="@color/gray"
-        app:cardCornerRadius="15sp"
+        app:cardCornerRadius="12sp"
         app:cardElevation="0sp" />
 
     <LinearLayout
         android:id="@+id/LinearLayoutMainVertical"
         android:layout_width="match_parent"
         android:layout_height="500sp"
+        android:elevation="0sp"
         android:orientation="vertical">
 
         <androidx.cardview.widget.CardView
@@ -38,7 +52,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             app:cardBackgroundColor="#00A2A2A2"
-            app:cardElevation="0dp">
+            app:cardElevation="0sp">
 
             <EditText
                 android:id="@+id/editTextTitle"
@@ -69,29 +83,31 @@
             android:layout_marginLeft="12sp"
             android:layout_marginRight="12sp"
             app:cardBackgroundColor="#00FFFFFF"
-            app:cardCornerRadius="10sp">
+            app:cardCornerRadius="10sp"
+            app:cardElevation="0sp">
 
             <ImageView
-                android:id="@+id/imageViewShadowEditListing"
+                android:id="@+id/imageViewBorderEditListingPhoto"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:background="@color/black"
                 android:clickable="true"
+                android:elevation="0sp"
                 android:onClick="onPhotoClick"
-                android:scaleType="centerCrop" />
+                android:scaleType="centerCrop"
+                app:srcCompat="@drawable/gradient_border_inside" />
 
             <androidx.cardview.widget.CardView
                 android:id="@+id/cardViewImageNoShadow"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_gravity="center_horizontal"
-                android:layout_marginLeft="0sp"
-                android:layout_marginTop="0sp"
+                android:layout_marginLeft="2sp"
+                android:layout_marginTop="2sp"
                 android:layout_marginRight="2sp"
                 android:layout_marginBottom="2sp"
                 android:background="#00FFFFFF"
                 app:cardBackgroundColor="#00FFFFFF"
-                app:cardCornerRadius="10sp"
+                app:cardCornerRadius="8sp"
                 app:cardElevation="0sp">
 
                 <ImageView
@@ -102,6 +118,7 @@
                     android:layout_marginBottom="0sp"
                     android:background="@color/gray_dark"
                     android:clickable="true"
+                    android:elevation="0sp"
                     android:onClick="onPhotoClick"
                     android:scaleType="centerCrop" />
 

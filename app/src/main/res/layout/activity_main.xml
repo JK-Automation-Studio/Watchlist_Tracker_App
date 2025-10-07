@@ -15,6 +15,14 @@
         android:layout_height="95sp"
         app:cardBackgroundColor="@color/black">
 
+        <ImageView
+            android:id="@+id/imageViewBorderMenuBar"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:tint="@color/material_dynamic_primary60"
+            android:tintMode="multiply"
+            app:srcCompat="@drawable/gradient_border" />
+
         <View
             android:id="@+id/MenuBar"
             android:layout_width="wrap_content"
@@ -26,9 +34,10 @@
             android:id="@+id/textViewAppTitle"
             android:layout_width="wrap_content"
             android:layout_height="32sp"
-            android:layout_gravity="top|left"
+            android:layout_gravity="bottom|left"
             android:layout_marginLeft="16sp"
-            android:layout_marginTop="48sp"
+            android:layout_marginTop="0sp"
+            android:layout_marginBottom="12sp"
             android:shadowColor="@color/black"
             android:shadowDx="4"
             android:shadowDy="2"
@@ -36,19 +45,94 @@
             android:text="@string/app_name"
             android:textColor="@color/white"
             android:textSize="24sp" />
+
     </androidx.cardview.widget.CardView>
 
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/fabAddListing"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cardFAB"
+        android:layout_width="65sp"
+        android:layout_height="65sp"
         android:layout_gravity="bottom|right"
-        android:layout_margin="32sp"
-        android:onClick="onFabClick"
-        android:src="@android:drawable/ic_input_add"
-        android:tint="@color/material_dynamic_primary50"
-        app:backgroundTint="@color/material_dynamic_primary60"
-        app:borderWidth="1sp" />
+        android:layout_marginRight="16sp"
+        android:layout_marginBottom="48sp"
+        app:cardBackgroundColor="#00FFFFFF"
+        app:cardCornerRadius="20sp"
+        app:cardElevation="3sp">
+
+        <ImageView
+            android:id="@+id/imageGradientFAB"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_gravity="center_horizontal|center_vertical"
+            android:elevation="0sp"
+            android:tint="@color/material_dynamic_primary60"
+            android:tintMode="multiply"
+            app:srcCompat="@drawable/gradient_border" />
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/cardFABBorder"
+            android:layout_width="60sp"
+            android:layout_height="60sp"
+            android:layout_gravity="center_vertical"
+            android:layout_margin="2sp"
+            android:layout_marginLeft="0sp"
+            app:cardBackgroundColor="#00FFFFFF"
+            app:cardCornerRadius="17sp"
+            app:cardElevation="0sp">
+
+            <ImageView
+                android:id="@+id/imageFABBg"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_gravity="center_horizontal|center_vertical"
+                android:layout_margin="0sp"
+                android:background="@color/material_dynamic_primary60"
+                android:elevation="0sp" />
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/cardFabAddShadow"
+                android:layout_width="45sp"
+                android:layout_height="45sp"
+                android:layout_gravity="center_horizontal|center_vertical"
+                android:layout_marginLeft="3sp"
+                android:layout_marginTop="2sp"
+                app:cardBackgroundColor="#00FFFFFF"
+                app:cardElevation="0sp"
+                app:cardMaxElevation="0sp">
+
+                <ImageView
+                    android:id="@+id/imageFABAddShadow"
+                    android:layout_width="45sp"
+                    android:layout_height="45sp"
+                    android:layout_gravity="start"
+                    android:layout_margin="0sp"
+                    android:layout_marginLeft="0sp"
+                    android:layout_marginRight="0sp"
+                    android:background="#007A90C8"
+                    android:elevation="0sp"
+                    android:tint="@color/gray_dark"
+                    android:visibility="visible"
+                    app:srcCompat="@drawable/ic_fab_add" />
+            </androidx.cardview.widget.CardView>
+
+            <ImageView
+                android:id="@+id/imageFABAdd"
+                android:layout_width="45sp"
+                android:layout_height="45sp"
+                android:layout_gravity="center_horizontal|center_vertical"
+                android:layout_margin="0sp"
+                android:layout_marginLeft="0sp"
+                android:alpha="1"
+                android:background="#007A90C8"
+                android:elevation="0sp"
+                android:onClick="onFabClick"
+                android:tint="@color/white"
+                android:tintMode="multiply"
+                android:visibility="visible"
+                app:srcCompat="@drawable/ic_fab_add" />
+        </androidx.cardview.widget.CardView>
+
+    </androidx.cardview.widget.CardView>
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerView"
@@ -80,5 +164,12 @@
         android:textColor="@color/white"
         android:textSize="20sp"
         android:visibility="visible" />
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cardViewColorTester"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:visibility="gone"
+        app:cardBackgroundColor="#00EBEBD0" />
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>
