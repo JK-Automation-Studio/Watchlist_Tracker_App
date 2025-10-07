@@ -57,7 +57,10 @@ public class ListingViewAdapter extends RecyclerView.Adapter<ListingViewAdapter.
             holder.imagePoster.setImageURI(Uri.parse(listing.getPhoto()));
             holder.barTop.setVisibility(View.GONE);
             holder.barBot.setVisibility(View.GONE);
-
+        }
+        else {
+            holder.barTop.setVisibility(View.VISIBLE);
+            holder.barBot.setVisibility(View.VISIBLE);
         }
 
         // TODO: load image from listing.getPhoto() - API or Local Image or something else?
