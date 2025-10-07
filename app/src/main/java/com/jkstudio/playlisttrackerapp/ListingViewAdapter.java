@@ -6,8 +6,10 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.FrameLayout;
 import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -48,10 +50,13 @@ public class ListingViewAdapter extends RecyclerView.Adapter<ListingViewAdapter.
         holder.textTitle.setText(listing.getTitle());
         holder.textWatchMethod.setText(listing.getWatchMethod());
 
+
         holder.imagePoster.setImageResource(R.drawable.ic_launcher_foreground); // set card photo to droid
 
         if(listing.getPhoto()!=""){
             holder.imagePoster.setImageURI(Uri.parse(listing.getPhoto()));
+            holder.barTop.setVisibility(View.GONE);
+            holder.barBot.setVisibility(View.GONE);
 
         }
 
@@ -101,6 +106,7 @@ public class ListingViewAdapter extends RecyclerView.Adapter<ListingViewAdapter.
         ImageButton infoButton; // Edit button for listing
         Button btnWatched, btnRemove; // Buttons for watch / remove for listing
 
+        FrameLayout barTop, barBot;
         public ListingViewHolder(@NonNull View itemView) {
             super(itemView);
 
@@ -111,6 +117,10 @@ public class ListingViewAdapter extends RecyclerView.Adapter<ListingViewAdapter.
             textWatchMethod = itemView.findViewById(R.id.textWatchMethod);
             btnRemove = itemView.findViewById(R.id.buttonCancel);
             btnWatched = itemView.findViewById(R.id.buttonAdd);
+
+            barTop = itemView.findViewById(R.id.linearLCARSTop);
+            barBot = itemView.findViewById(R.id.linearLCARSBot);
+
 
             textEmpty = itemView.findViewById(R.id.textViewEmptyList);
         }
