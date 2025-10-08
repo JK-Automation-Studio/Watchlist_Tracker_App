@@ -1,6 +1,5 @@
 package com.jkstudio.playlisttrackerapp;
 
-import android.content.Context;
 import android.net.Uri;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -9,7 +8,6 @@ import android.widget.Button;
 import android.widget.FrameLayout;
 import android.widget.ImageButton;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -51,30 +49,32 @@ public class ListingViewAdapter extends RecyclerView.Adapter<ListingViewAdapter.
         holder.textWatchMethod.setText(listing.getWatchMethod());
 
 
-        holder.imagePoster.setImageResource(R.drawable.ic_launcher_foreground); // set card photo to droid
+        // Image logic for each cardview
+        // Set image to default
+        holder.imagePoster.setImageResource(R.drawable.ic_launcher_foreground);
 
+        // If listing has photo, set card photo to photo and remove LCARS bars
         if(listing.getPhoto()!=""){
             holder.imagePoster.setImageURI(Uri.parse(listing.getPhoto()));
             holder.barTop.setVisibility(View.GONE);
             holder.barBot.setVisibility(View.GONE);
         }
-        else {
+        else { // Is listing has no photo ensure LCARS bars are showing
             holder.barTop.setVisibility(View.VISIBLE);
             holder.barBot.setVisibility(View.VISIBLE);
         }
 
-        // TODO: load image from listing.getPhoto() - API or Local Image or something else?
 
-        // Button Text filled in from listing.getWatched
+        // Button Text filled in according to listing.getWatched
         holder.btnWatched.setText(listing.getWatched() ? "Watched" : "Not Watched");
 
-        // Handle clicks of watched button
+        // Handle clicks of Watched button
         holder.btnWatched.setOnClickListener(v -> {
             listing.setWatched(!listing.getWatched()); // toggle listing's watched state
             notifyItemChanged(position); // refresh this card
         });
 
-        // Listener for remove button
+        // Listener for Remove button
         holder.btnRemove.setOnClickListener(v -> {
             //listings.remove(position);   // remove this movie from the list
             mainActivity.library.removeListing(position);
@@ -83,8 +83,8 @@ public class ListingViewAdapter extends RecyclerView.Adapter<ListingViewAdapter.
             notifyItemRangeChanged(position, listings.size());
         });
 
-        // Listener for info/edit button
-        holder.infoButton.setOnClickListener(view -> {
+        // Listener for Edit button
+        holder.editButton.setOnClickListener(view -> {
             mainActivity.EditListing(listing);
         });
 
@@ -106,7 +106,7 @@ public class ListingViewAdapter extends RecyclerView.Adapter<ListingViewAdapter.
         TextView textTitle, textWatchMethod; // Texts for listing
         TextView textEmpty; // Text for empty list hint
         ImageView imagePoster; // Image for listing
-        ImageButton infoButton; // Edit button for listing
+        ImageButton editButton; // Edit button for listing
         Button btnWatched, btnRemove; // Buttons for watch / remove for listing
 
         FrameLayout barTop, barBot;
@@ -114,12 +114,12 @@ public class ListingViewAdapter extends RecyclerView.Adapter<ListingViewAdapter.
             super(itemView);
 
             // Find all views for card view
-            textTitle = itemView.findViewById(R.id.textListingTitle);
-            infoButton = itemView.findViewById(R.id.infoButton);
-            imagePoster = itemView.findViewById(R.id.imageView);
-            textWatchMethod = itemView.findViewById(R.id.textWatchMethod);
-            btnRemove = itemView.findViewById(R.id.buttonCancel);
-            btnWatched = itemView.findViewById(R.id.buttonAdd);
+            textTitle = itemView.findViewById(R.id.textListingTitleCardview);
+            editButton = itemView.findViewById(R.id.editButtonCardview);
+            imagePoster = itemView.findViewById(R.id.imageViewCardview);
+            textWatchMethod = itemView.findViewById(R.id.textWatchMethodCardview);
+            btnRemove = itemView.findViewById(R.id.buttonCancelCardview);
+            btnWatched = itemView.findViewById(R.id.buttonAddCardview);
 
             barTop = itemView.findViewById(R.id.linearLCARSTop);
             barBot = itemView.findViewById(R.id.linearLCARSBot);

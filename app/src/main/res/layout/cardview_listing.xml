@@ -2,6 +2,7 @@
 <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/CardViewCardview"
     android:layout_width="300sp"
     android:layout_height="400sp"
     android:layout_gravity="center_horizontal"
@@ -20,7 +21,7 @@
         app:cardElevation="0sp" />
 
     <ImageView
-        android:id="@+id/imageCardViewBorder"
+        android:id="@+id/cardBorderCardview"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:elevation="0sp"
@@ -28,7 +29,7 @@
         app:srcCompat="@drawable/gradient_border" />
 
     <androidx.cardview.widget.CardView
-        android:id="@+id/cardViewListingBg"
+        android:id="@+id/cardBackgroundCardview"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_gravity="top|left"
@@ -41,13 +42,13 @@
         app:cardElevation="0sp" />
 
     <LinearLayout
-        android:id="@+id/LinearLayoutMainVertical"
+        android:id="@+id/linearLayoutCardview"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical">
 
         <androidx.cardview.widget.CardView
-            android:id="@+id/cardViewMenu"
+            android:id="@+id/cardTopMenuCardview"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="12sp"
@@ -56,7 +57,7 @@
             app:cardElevation="0sp">
 
             <TextView
-                android:id="@+id/textListingTitle"
+                android:id="@+id/textListingTitleCardview"
                 android:layout_width="220sp"
                 android:layout_height="50sp"
                 android:layout_gravity="left|center_vertical"
@@ -74,7 +75,7 @@
                 android:textSize="20sp" />
 
             <ImageButton
-                android:id="@+id/infoButtonShadow"
+                android:id="@+id/editButtonCardviewShadow"
                 style="@style/Widget.AppCompat.ImageButton"
                 android:layout_width="34sp"
                 android:layout_height="34sp"
@@ -88,7 +89,7 @@
                 app:srcCompat="@drawable/ic_edit_listing" />
 
             <ImageButton
-                android:id="@+id/infoButton"
+                android:id="@+id/editButtonCardview"
                 style="@style/Widget.AppCompat.ImageButton"
                 android:layout_width="34sp"
                 android:layout_height="34sp"
@@ -104,7 +105,7 @@
         </androidx.cardview.widget.CardView>
 
         <androidx.cardview.widget.CardView
-            android:id="@+id/cardViewImageFull"
+            android:id="@+id/cardImageFullCardview"
             android:layout_width="match_parent"
             android:layout_height="205sp"
             android:layout_gravity="center_horizontal"
@@ -116,7 +117,7 @@
             app:cardElevation="0sp">
 
             <ImageView
-                android:id="@+id/imageCardViewImageBorder"
+                android:id="@+id/imageBorderCardview"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_marginLeft="0sp"
@@ -127,7 +128,7 @@
                 app:srcCompat="@drawable/gradient_border_inside" />
 
             <androidx.cardview.widget.CardView
-                android:id="@+id/cardViewImageNoShadow"
+                android:id="@+id/imageNoShadowCardview"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_gravity="center_horizontal"
@@ -141,7 +142,7 @@
                 app:cardElevation="0sp">
 
                 <ImageView
-                    android:id="@+id/imageView"
+                    android:id="@+id/imageViewCardview"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_marginLeft="0sp"
@@ -229,7 +230,7 @@
         </androidx.cardview.widget.CardView>
 
         <androidx.cardview.widget.CardView
-            android:id="@+id/cardViewBottom"
+            android:id="@+id/cardBottomMenuCardview"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_marginLeft="12sp"
@@ -240,7 +241,7 @@
             app:cardElevation="0sp">
 
             <LinearLayout
-                android:id="@+id/verticalLayoutDescription"
+                android:id="@+id/linearMenuBottomCardview"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_gravity="bottom"
@@ -249,14 +250,14 @@
                 android:orientation="vertical">
 
                 <LinearLayout
-                    android:id="@+id/horizontalLayoutButtons"
+                    android:id="@+id/linearButtonsBottomCardview"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:gravity="bottom|right"
                     android:orientation="horizontal">
 
                     <Button
-                        android:id="@+id/buttonCancel"
+                        android:id="@+id/buttonCancelCardview"
                         android:layout_width="100sp"
                         android:layout_height="55sp"
                         android:layout_gravity="center_vertical"
@@ -279,7 +280,7 @@
                         app:strokeWidth="2sp" />
 
                     <Button
-                        android:id="@+id/buttonAdd"
+                        android:id="@+id/buttonAddCardview"
                         style="@style/Widget.Material3.Button.ElevatedButton"
                         android:layout_width="100sp"
                         android:layout_height="55sp"
@@ -302,7 +303,7 @@
             </LinearLayout>
 
             <TextView
-                android:id="@+id/textWatchMethod"
+                android:id="@+id/textWatchMethodCardview"
                 android:layout_width="match_parent"
                 android:layout_height="45sp"
                 android:layout_gravity="top"
