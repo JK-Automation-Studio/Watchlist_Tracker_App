@@ -134,14 +134,14 @@ public class MainActivity extends AppCompatActivity {
         // Set variables for editable attributes
         EditText editTitle = dialogView.findViewById(R.id.editListingTitleDialog);
         EditText editWatchMethod = dialogView.findViewById(R.id.editWatchMethodDialog);
-        imageView = dialogView.findViewById(R.id.imageViewCardview);
+        imageView = dialogView.findViewById(R.id.imageViewDialog);
 
         imageView.setOnClickListener(v -> openImageChooser());
 
 
         // Set variables for buttons in dialog
-        Button btnYes = dialogView.findViewById(R.id.buttonAddCardview);
-        Button btnNo = dialogView.findViewById(R.id.buttonCancelCardview);
+        Button btnYes = dialogView.findViewById(R.id.buttonAddDialog);
+        Button btnNo = dialogView.findViewById(R.id.buttonCancelDialog);
         textEmptyPhoto = dialogView.findViewById(R.id.textEmptyPhotoDialog);
 
         // Fill edit dialog fields with listing's current info, new Listings are blank
