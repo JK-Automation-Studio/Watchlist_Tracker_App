@@ -93,7 +93,6 @@
                 android:layout_height="match_parent"
                 android:clickable="true"
                 android:elevation="0sp"
-                android:onClick="onPhotoClick"
                 android:scaleType="centerCrop"
                 app:srcCompat="@drawable/gradient_border_inside" />
 
@@ -120,7 +119,6 @@
                     android:background="@color/gray_dark"
                     android:clickable="true"
                     android:elevation="0sp"
-                    android:onClick="onPhotoClick"
                     android:scaleType="centerCrop" />
 
                 <TextView

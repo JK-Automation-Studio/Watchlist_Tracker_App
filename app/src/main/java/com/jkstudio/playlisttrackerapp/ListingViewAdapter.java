@@ -1,6 +1,7 @@
 package com.jkstudio.playlisttrackerapp;
 
 import android.net.Uri;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -59,7 +60,7 @@ public class ListingViewAdapter extends RecyclerView.Adapter<ListingViewAdapter.
             holder.barTop.setVisibility(View.GONE);
             holder.barBot.setVisibility(View.GONE);
         }
-        else { // Is listing has no photo ensure LCARS bars are showing
+        else { // If listing has no photo ensure LCARS bars are showing
             holder.barTop.setVisibility(View.VISIBLE);
             holder.barBot.setVisibility(View.VISIBLE);
         }
@@ -81,6 +82,7 @@ public class ListingViewAdapter extends RecyclerView.Adapter<ListingViewAdapter.
             mainActivity.updateEmptyView();
             notifyItemRemoved(position); // notify RecyclerView
             notifyItemRangeChanged(position, listings.size());
+            //Log.i("i","Listings Size:\n"+listings.size()); // Logcat message showing size of Listings
         });
 
         // Listener for Edit button

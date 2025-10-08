@@ -111,21 +111,21 @@ public class MainActivity extends AppCompatActivity {
         // If library is empty, show empty list hint
         if(library.getCount()==0){
             emptyText.setVisibility(View.VISIBLE);
+            Log.i("i","Library Count:\n"+library.getCount()); // Logcat message showing size of Library
         }
         else{
             // if library not empty, hide list hint and log library's count
             emptyText.setVisibility(View.INVISIBLE);
-            Log.i("i",""+library.getCount());
+            Log.i("i","Library Count:\n"+library.getCount()); // Logcat message showing size of Library
         }
     }
 
     public void onFabClick(View v){
+        // Floating Action Button click, edit listing with New listing for Add Listing
         EditListing(new Listing());
     }
 
     public void EditListing(Listing listing) {
-        //TODO edit photo option somehow
-
         // Dialog Edit Listing
         // Inflate the dialog layout
         LayoutInflater inflater = LayoutInflater.from(this);
@@ -160,8 +160,6 @@ public class MainActivity extends AppCompatActivity {
             imageView.setImageURI(Uri.parse(listing.getPhoto()));
             textEmptyPhoto.setVisibility(View.INVISIBLE);
         }
-
-        //TODO Set photo attribute with Listing's photo chosen by user, if there
 
 
         // Check for current listing info, if empty is new Listing.
@@ -198,12 +196,13 @@ public class MainActivity extends AppCompatActivity {
                 if(uri == null) {
                 }
                 else {
-                    listing.setPhoto(imageView.getTag().toString());
+                    listing.setPhoto(imageView.getTag().toString()); // Get photo URI from imageView and save to listing
                 }
+
                 // Add to library if this is a new listing
                 if (!library.getListings().contains(listing)) {
                     library.addListing(listing);
-                    updateLibraryFile();
+                    writeLibraryFile();
                 }
 
                 // Use the adapter to update RecyclerView of changes
@@ -239,8 +238,7 @@ public class MainActivity extends AppCompatActivity {
         editTitle.setFocusableInTouchMode(true);
         editTitle.requestFocus();
 
-        // Set SoftwareInputMode to visible, then schedule a post in
-        // EditTitle to create InputManager for showing Software Keyboard
+        // Set SoftwareInputMode to visible, then schedule a post in EditTitle to create InputManager for showing Software Keyboard
         dialog.getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_VISIBLE);
         editTitle.post(new Runnable() {
             @Override public void run() {
@@ -272,22 +270,18 @@ public class MainActivity extends AppCompatActivity {
                 imageView.setImageURI(selectedImageUri);
                 imageView.setTag(selectedImageUri.toString());
                 textEmptyPhoto.setVisibility(View.INVISIBLE);
-                //listing.setPhoto(selectedImageUri.toString());
             }
         }
     }
 
 
-    private void updateLibraryFile() {
+    private void writeLibraryFile() {
         // TODO Create method for writing Library's listings to Library File in storage
     }
 
-    public void retrieveLibraryFile(){
+    public void readLibraryFile(){
         // TODO Create method for retrieving Library from Library File in storage
     }
 
-    public void onPhotoClick(View v){
-        // TODO If needed a method for creating photo clicker popup from photo click
-    }
 
 }
