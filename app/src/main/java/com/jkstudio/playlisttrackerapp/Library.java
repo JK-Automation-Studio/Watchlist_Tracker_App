@@ -37,7 +37,7 @@ public class Library {
         //TODO check ids for uniqueness, update this listing's id if not
 
         // Add item to arraylist
-        this.listings.add(listing);
+        this.listings.addFirst(listing);
         this.count++;
 
     }

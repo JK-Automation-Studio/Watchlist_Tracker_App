@@ -275,6 +275,7 @@ public class MainActivity extends AppCompatActivity {
 
     public void writeLibraryFile(){
         try{
+
             mSerializer.save(library.getListings());
             Log.i("i","Saved Library");
 

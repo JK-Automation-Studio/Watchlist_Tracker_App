@@ -15,6 +15,7 @@ import java.io.OutputStream;
 import java.io.OutputStreamWriter;
 import java.io.Writer;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public class JSONSerializer {
@@ -81,7 +82,12 @@ public class JSONSerializer {
             if (reader != null)
                 reader.close();
         }
-        return listingList;
+
+        if(!listingList.get(1).getTitle().isBlank()){
+            Collections.reverse(listingList);
+        }
+        
+        return (ArrayList<Listing>) listingList;
     }
 
 
