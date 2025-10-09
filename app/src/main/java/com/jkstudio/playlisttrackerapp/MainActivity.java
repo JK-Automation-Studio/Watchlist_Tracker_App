@@ -197,6 +197,13 @@ public class MainActivity extends AppCompatActivity {
                 if (!library.getListings().contains(listing)) {
                     library.addListing(listing);
                 }
+                else {
+                    library.removeListing(listing);
+                    library.addListing((listing));
+
+                }
+
+
 
                 // Use the adapter to update RecyclerView of changes
                 adapter.notifyDataSetChanged();
