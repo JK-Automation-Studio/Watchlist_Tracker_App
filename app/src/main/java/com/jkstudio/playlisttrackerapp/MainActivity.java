@@ -144,7 +144,7 @@ public class MainActivity extends AppCompatActivity {
         //imageView.setImageResource(R.drawable.default_listing_photo); // set image to default
 
         // Check if listing's photo has been set yet, if null, new listing
-        if(listing.getPhoto() == "")
+        if(listing.getPhoto().isBlank())
         {
             imageView.setImageResource(R.drawable.add_photo_bg); // set image to green grid
             textEmptyPhoto.setVisibility(View.VISIBLE);
