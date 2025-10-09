@@ -1,5 +1,7 @@
 package com.jkstudio.playlisttrackerapp;
 
+import android.util.Log;
+
 import java.util.ArrayList;
 
 
@@ -37,6 +39,7 @@ public class Library {
         // Add item to arraylist
         this.listings.add(listing);
         this.count++;
+
     }
 
     public void removeListing(Listing listing){
@@ -61,6 +64,7 @@ public class Library {
     }
 
     public ArrayList getListings(){
+
         return(this.listings);
     }
 }

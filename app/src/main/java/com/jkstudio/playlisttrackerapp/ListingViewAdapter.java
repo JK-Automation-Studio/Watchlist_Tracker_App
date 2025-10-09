@@ -55,14 +55,17 @@ public class ListingViewAdapter extends RecyclerView.Adapter<ListingViewAdapter.
         holder.imagePoster.setImageResource(R.drawable.ic_launcher_foreground);
 
         // If listing has photo, set card photo to photo and remove LCARS bars
-        if(listing.getPhoto()!=""){
+        if(!listing.getPhoto().isBlank()){
             holder.imagePoster.setImageURI(Uri.parse(listing.getPhoto()));
             holder.barTop.setVisibility(View.GONE);
             holder.barBot.setVisibility(View.GONE);
+            Log.i("i","Photo Found for Card: "+listing.getPhoto());
         }
         else { // If listing has no photo ensure LCARS bars are showing
             holder.barTop.setVisibility(View.VISIBLE);
             holder.barBot.setVisibility(View.VISIBLE);
+            Log.i("i","No Photo Found for Card");
+
         }
 
 

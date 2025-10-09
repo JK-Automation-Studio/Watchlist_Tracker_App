@@ -2,7 +2,12 @@ package com.jkstudio.playlisttrackerapp;
 
 import android.net.Uri;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
 public class Listing {
+
+    // Class Attributes
     private int id;
     private String title;
     private String watchMethod;
@@ -11,6 +16,14 @@ public class Listing {
     private String description;
     boolean watched;
     private String photo;
+
+    // JSON Key Titles
+    private static final String JSON_ID = "id";
+    private static final String JSON_TITLE = "title";
+    // private static final String JSON_DESCRIPTION = "description";
+    private static final String JSON_WATCH_METHOD = "watch-method";
+    private static final String JSON_WATCHED = "todo";
+    private static final String JSON_PHOTO = "important";
 
 
     //USAGE
@@ -30,7 +43,31 @@ public class Listing {
         this.watched = false;
         this.photo = "";
     }
+    // Constructor
+    // Only used when new is called with a JSONObject
+    public Listing(JSONObject jo) throws JSONException {
 
+        id =  jo.getInt(JSON_ID);
+        title =  jo.getString(JSON_TITLE);
+        watchMethod = jo.getString(JSON_WATCH_METHOD);
+        watched = jo.getBoolean(JSON_WATCHED);
+        photo = jo.getString(JSON_PHOTO);
+
+    }
+
+    // Convert to JSON
+    public JSONObject convertToJSON() throws JSONException {
+
+        JSONObject jo = new JSONObject();
+        jo.put(JSON_ID, id);
+        jo.put(JSON_TITLE, title);
+        jo.put(JSON_WATCH_METHOD, watchMethod);
+        jo.put(JSON_WATCHED, watched);
+        jo.put(JSON_PHOTO, this.getPhoto());
+        return jo;
+    }
+
+    // Getters and Setters
     public int getId(){
         return(this.id);
     }

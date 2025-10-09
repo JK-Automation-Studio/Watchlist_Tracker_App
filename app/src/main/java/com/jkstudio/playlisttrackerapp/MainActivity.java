@@ -22,7 +22,13 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class MainActivity extends AppCompatActivity {
+
+    private  JSONSerializer mSerializer;
+    private List<Listing> listingList;
 
     Library library;
     ListingViewAdapter adapter;
@@ -53,46 +59,28 @@ public class MainActivity extends AppCompatActivity {
         // TODO Replace with retrieving library from file
         library = new Library();
 
-        Listing listing = new Listing();
 
-        listing.setId(100);
-        listing.setTitle("Guardians of the Multiverse");
-        listing.setDescription("A movie about a group of people who accomplish a goal.");
-        //listing.setRating(3);
-        listing.setWatched(false);
-        listing.setWatchMethod("Disney+");
-        library.addListing(listing);
 
-        Listing listing2 = new Listing();
-        listing2.setId(200);
-        listing2.setTitle("Star Wars Trek");
-        listing2.setDescription("A movie about a group of people who accomplish a goal.");
-        //listing2.setRating(5);
-        listing2.setWatched(false);
-        listing2.setWatchMethod("Netflix UK");
-        library.addListing(listing2);
+        // Serializer to read notes
+        mSerializer = new JSONSerializer("LibraryListings.json", getApplicationContext());
+        try {
+            listingList = mSerializer.load();
 
-        Listing listing3 = new Listing();
-        listing3.setId(300);
-        listing3.setTitle("The Man Bat Beyond");
-        listing3.setDescription("A movie about a group of people who accomplish a goal.");
-        //listing3.setRating(5);
-        listing3.setWatched(false);
-        listing3.setWatchMethod("HBO Max");
-        library.addListing(listing3);
 
-        Listing listing4 = new Listing();
-        listing4.setId(300);
-        listing4.setTitle("Field Sign");
-        listing4.setDescription("A movie about a group of people who accomplish a goal.");
-        //listing4.setRating(0);
-        listing4.setWatched(false);
-        listing4.setWatchMethod("Unknown");
-        library.addListing(listing4);
+            for(Listing l : listingList)
+            {
+                library.addListing(l);
+            }
 
+            Log.i("i","Library Loaded");
+        } catch (Exception e) {
+            Log.e("Error loading library: ", "", e); // Log to logcat
+        }
 
         // Sets visibility of empty list hint text
         updateEmptyView();
+
+
 
 
         // Create recycler view and set layout to linear
@@ -103,6 +91,12 @@ public class MainActivity extends AppCompatActivity {
         recyclerView.setAdapter(adapter);
     }
 
+    @Override
+    protected void onPause(){
+        // Save notes when app is closed
+        super.onPause();
+        writeLibraryFile();
+    }
     public void updateEmptyView() {
 
         // Set variable for text field
@@ -202,7 +196,6 @@ public class MainActivity extends AppCompatActivity {
                 // Add to library if this is a new listing
                 if (!library.getListings().contains(listing)) {
                     library.addListing(listing);
-                    writeLibraryFile();
                 }
 
                 // Use the adapter to update RecyclerView of changes
@@ -254,6 +247,8 @@ public class MainActivity extends AppCompatActivity {
     private void openImageChooser() {
         Intent intent = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
         intent.setType("image/*");
+        intent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
+        intent.addFlags(Intent.FLAG_GRANT_PERSISTABLE_URI_PERMISSION);
         startActivityForResult(intent, PICK_IMAGE_REQUEST);
     }
 
@@ -267,6 +262,8 @@ public class MainActivity extends AppCompatActivity {
             Uri selectedImageUri = data.getData();
 
             if (selectedImageUri != null) {
+                getContentResolver().takePersistableUriPermission(selectedImageUri, Intent.FLAG_GRANT_READ_URI_PERMISSION);
+
                 imageView.setImageURI(selectedImageUri);
                 imageView.setTag(selectedImageUri.toString());
                 textEmptyPhoto.setVisibility(View.INVISIBLE);
@@ -275,8 +272,15 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
-    private void writeLibraryFile() {
-        // TODO Create method for writing Library's listings to Library File in storage
+    public void writeLibraryFile(){
+        try{
+            mSerializer.save(library.getListings());
+            Log.i("i","Saved Library");
+
+        }
+        catch(Exception e){
+            Log.i("i","Error Saving Library");
+        }
     }
 
     public void readLibraryFile(){
