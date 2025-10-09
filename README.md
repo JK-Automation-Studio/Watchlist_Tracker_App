@@ -1,7 +1,12 @@
-This app was designed to be a repository for collecting all the movies one would like to watch. You can save movies to the playlist to view later on when deciding what to watch etc. This is my first hobby app built from scratch with no Youtube tutorials or anything like that. I know there is likely errors I have missed, as well as compatibility issues I have not been able to test, but I am proud of the app.
+This app was designed to be a repository for collecting all the movies one would like to watch. You can save movies to the playlist to view later on when deciding what to watch etc. This is my first hobby app built from scratch with no Youtube tutorials or anything like that. The app has a few different screens and dialogs, as well as user input, photo picker intent, and JSON persistence.
+
 
  
- 
+ Current Release : v1.0
+
+https://github.com/JK-Automation-Studio/Movie-Playlist-Tracker-App/releases/tag/v1.0
+
+
 
 
 Playlist Library View
@@ -33,4 +38,5 @@ Edit Listing View
 The same dialog as the add listing, this allows one to edit the info of an existing movie listing.
 
 <img width="320" height="700" alt="EditListing Screenshot" src="https://github.com/user-attachments/assets/dff81faa-cf3c-4a94-8463-a40ff524c03d" />
+
 
