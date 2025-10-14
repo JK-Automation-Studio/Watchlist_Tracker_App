@@ -8,6 +8,8 @@ import android.os.Bundle;
 import android.provider.MediaStore;
 import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.WindowManager;
 import android.view.inputmethod.InputMethodManager;
@@ -15,14 +17,16 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
+
 import androidx.activity.EdgeToEdge;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
@@ -52,11 +56,15 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
 
+        // set toolbar for app
+        Toolbar toolbar = findViewById(R.id.toolbarMenu);
+        setSupportActionBar(toolbar);
+        // set toolbar menu button color
+        toolbar.getOverflowIcon().setTint(getResources().getColor(R.color.white)); // Only thing that has worked to change color of overflow icon
 
 
 
         // create new library and fill with temp Listings
-        // TODO Replace with retrieving library from file
         library = new Library();
 
 
@@ -97,6 +105,54 @@ public class MainActivity extends AppCompatActivity {
         super.onPause();
         writeLibraryFile();
     }
+
+    // Create toolbar with menu
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.menu_main, menu);
+        return true;
+    }
+
+    // Handle item clicks for toolbar menu
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        int id = item.getItemId();
+
+        if (id == R.id.menuItemSettings) {
+            Toast.makeText(this, "Settings clicked", Toast.LENGTH_SHORT).show();
+            return true;
+            /* TODO
+                Create new SettingsActivity.java class
+                and activity_settings.xml
+
+                Intent intent = new Intent(this, SettingsActivity.class);
+                startActivity(intent);
+             */
+        }
+
+        if (id == R.id.menuItemImport) {
+            Toast.makeText(this, "Import clicked", Toast.LENGTH_SHORT).show();
+            return true;
+            /* TODO
+                Create new import method
+
+                importFromFile();
+             */
+        }
+
+        if (id == R.id.menuItemExport) {
+            Toast.makeText(this, "Export clicked", Toast.LENGTH_SHORT).show();
+            return true;
+            /* TODO
+                Create new export method
+
+                exportToFile();
+             */
+        }
+
+        return super.onOptionsItemSelected(item);
+    }
+
     public void updateEmptyView() {
 
         // Set variable for text field
@@ -113,6 +169,7 @@ public class MainActivity extends AppCompatActivity {
             Log.i("i","Library Count:\n"+library.getCount()); // Logcat message showing size of Library
         }
     }
+
 
     public void onFabClick(View v){
         // Floating Action Button click, edit listing with New listing for Add Listing
@@ -293,7 +350,9 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void readLibraryFile(){
-        // TODO Create method for retrieving Library from Library File in storage
+        // TODO
+        //  Create method for retrieving Library from Library File in storage
+        //  or fill in mSerializer.load(); ??
     }
 
 
